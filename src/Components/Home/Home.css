@@ -1,0 +1,25 @@
+* {
+    text-decoration: none;
+}
+
+.home {
+    background-image: url('../../images/night-road.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    top: 0%;
+}
+
+.rides {
+    width: 100%;
+    position: relative;
+    top: 150px;
+    height: 400px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
