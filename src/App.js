@@ -7,8 +7,7 @@ import Login from './Components/Login/Login';
 import Header from './Components/Header/Header';
 import Error from './Components/Error/Error';
 import RideDetail from './Components/RideDetail/RideDetail';
-import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
-import { createContext, useState } from 'react';
+import { createContext } from 'react';
 
 export const UserContext = createContext();
 

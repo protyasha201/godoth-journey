@@ -16,17 +16,10 @@ const Login = () => {
         firebase.auth()
             .signInWithPopup(googleProvider)
             .then((result) => {
-                var credential = result.credential;
-                var token = credential.accessToken;
-                const { displayName, email, photoURL } = result.user;
-                const signedInUser = { displayName, email, photoURL };
-                // setLoggedInUser(signedInUser);
-                // history.replace(from);
+                const { displayName, email } = result.user;
+                
             }).catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                var email = error.email;
-                var credential = error.credential;
+                //show error
             });
     }
 
@@ -39,31 +32,25 @@ const Login = () => {
             .auth()
             .signInWithPopup(fbProvider)
             .then((result) => {
-                var credential = result.credential;
-                var user = result.user;
-                var accessToken = credential.accessToken;
+                const { displayName, email } = result.user;
             })
             .catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                var email = error.email;
-                var credential = error.credential;
+                //show error
             });
     }
-
     return (
         <div>
             <div className="login">
                 <h1>Login</h1>
                 <form className="form">
-                    <input type="email" name="email" placeholder="Email"></input>
-                    <input type="password" name="password" placeholder="Password"></input>
+                    <input required type="email" name="email" placeholder="Email"></input>
+                    <input required type="password" name="password" placeholder="Password"></input>
                     <div className="forgotPass">
                         <input className="checkBox" type="checkbox" name="checkbox"></input>
                         <p>Remember Me</p>
                         <a href="#">Forgot Password</a>
                     </div>
-                    <button className="loginButton">Login</button>
+                    <input name="submit" className="submitLogin" value="Login" type="submit"></input>
                 </form>
                 <h3>Don't have an account?<Link className="link" to="/signup">Create an account</Link></h3>
             </div>
