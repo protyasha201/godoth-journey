@@ -1,0 +1,83 @@
+.rideDetail {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: 50%;
+}
+
+.searchCity{
+    border: blue 1px solid;
+    background-color: rgb(41, 55, 60);
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    position: relative;
+    top: 30px;
+}
+
+.searchCity h4{
+    color: white;
+}
+
+.searchCity input {
+    border-radius: 10px;
+    height: 40px;
+    width: 95%;
+}
+
+.searchCity .searchBtn{
+    width: 100%;
+    margin-top: 30px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: coral;
+    cursor: pointer;
+    border: none;
+    color: white;
+    font-size: 20px;
+}
+
+.destination{
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(26, 29, 39);
+}
+
+.destination li{
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+.verticalLine{
+    border-left: 1px solid white;
+    margin-left: 12px;
+    height: 40px;
+}
+
+.trips{
+    display: flex;
+    background-color: lightcoral;
+    border-radius: 10px;
+    border: 1px solid white;
+    margin-top: 15px;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+}
+
+.trips img{
+    width: 50px;
+}
+
+.userIcon{
+    position: relative;
+    right: 12%;
+}
+
+.trips h4{
+    position: relative;
+    right: 20%;
+}
