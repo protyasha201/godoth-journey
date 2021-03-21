@@ -112,8 +112,9 @@ const SignUp = () => {
                     history.replace(from);
                 })
                 .catch((error) => {
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
+                    //show error
+                    // var errorCode = error.code;
+                    // var errorMessage = error.message;
                 });
         }
         e.preventDefault();

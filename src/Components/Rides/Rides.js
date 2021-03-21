@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, useParams } from 'react-router';
+import { useHistory } from 'react-router';
 import './Rides.css';
 
 const Rides = (props) => {
@@ -11,7 +11,7 @@ const Rides = (props) => {
     return (
         <div onClick={handleRideDetail} className="ridesContainer">
             <div className="rideImage">
-                <img src={imgUrl}></img>
+                <img src={imgUrl} alt="ride"></img>
             </div>
             <h1>{name}</h1>
         </div>

@@ -16,17 +16,13 @@ export class GoogleMap extends Component {
             position: 'absolute',
             right: '20px',
             height: '500px',
-            marginTop: '30px'
+            marginTop: '30px',
         }
         return (
             <Map containerStyle={containerStyle} style={mapStyle} google={this.props.google} zoom={13}>
 
                 <Marker onClick={this.onMarkerClick}
                     name={'Current location'} />
-
-                <InfoWindow onClose={this.onInfoWindowClose}>
-
-                </InfoWindow>
             </Map>
         );
     }

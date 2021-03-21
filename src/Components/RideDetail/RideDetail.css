@@ -81,3 +81,15 @@
     position: relative;
     right: 20%;
 }
+
+@media (max-width: 500px){
+    .rideDetail{
+        flex-direction: column;
+    }
+    .searchCity{
+        width: 400px;
+        position: relative;
+        left: 20px;
+        margin-bottom: 30px;
+    }
+}

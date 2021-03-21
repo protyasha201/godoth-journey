@@ -42,21 +42,21 @@ const RideDetail = () => {
                                     </div>
                                     <div>
                                         <div className="trips">
-                                            <img src={rides.imgUrl} />
+                                            <img src={rides.imgUrl} alt="ride" />
                                             <h3>{rides.name}</h3>
                                             <FontAwesomeIcon className="userIcon" icon={faUser} />
                                             <h4>{rides.tripPeople1}</h4>
                                             <h3>{rides.tripPrice1}</h3>
                                         </div>
                                         <div className="trips">
-                                            <img src={rides.imgUrl} />
+                                            <img src={rides.imgUrl} alt="ride" />
                                             <h3>{rides.name}</h3>
                                             <FontAwesomeIcon className="userIcon" icon={faUser} />
                                             <h4>{rides.tripPeople2}</h4>
                                             <h3>{rides.tripPrice2}</h3>
                                         </div>
                                         <div className="trips">
-                                            <img src={rides.imgUrl} />
+                                            <img src={rides.imgUrl} alt="ride" />
                                             <h3>{rides.name}</h3>
                                             <FontAwesomeIcon className="userIcon" icon={faUser} />
                                             <h4>{rides.tripPeople3}</h4>

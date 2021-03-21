@@ -52,3 +52,12 @@
 .horizontalLine{
     width: 80%;
 }
+
+@media (max-width: 500px){
+    .navbar{
+        flex-direction: column;
+    }
+    .navOptions{
+        column-gap: 20px;
+    }
+}

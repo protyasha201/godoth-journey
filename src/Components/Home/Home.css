@@ -23,3 +23,16 @@
     justify-content: space-around;
     align-items: center;
 }
+
+@media (max-width: 500px){
+    .rides{
+        flex-direction: column;
+        height: 100%;
+        position: relative;
+        margin-bottom: 200px;
+        background-color: black;
+    }
+    .home{
+        height: 1800px;
+    }
+}
