@@ -10,7 +10,7 @@ const Home = () => {
         <div className="home">
             <div className="rides">
                 {
-                    rideData.map(rides => <Rides key={rides.id} rides={rides}></Rides>)
+                    rideData.map(rides => <Rides key={rides.name} rides={rides}></Rides>)
                 }
             </div>
         </div>

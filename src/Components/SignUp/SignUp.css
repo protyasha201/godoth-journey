@@ -1,16 +1,7 @@
-.signUp {
-    border: 3px solid rgb(157, 151, 151);
-    max-width: 400px;
-    border-radius: 5px;
-    margin: 50px auto;
-    padding: 20px;
-}
-
 .form {
     display: flex;
     flex-direction: column;
 }
-
 .form input {
     width: 90%;
     border: none;
@@ -25,12 +16,7 @@
     color: rgb(73, 71, 73);
 }
 
-.signUp h1 {
-    color: coral;
-    font-size: 22px;
-}
-
-.signupBtn {
+.signupLogin {
     height: 50px;
     width: 90%;
     margin: 20px auto;
@@ -40,17 +26,6 @@
     border-radius: 5px;
     border: none;
     cursor: pointer;
-}
-
-.signUp h3 .link {
-    border-bottom: 1px solid black;
-    font-weight: 700;
-    color: rgb(67, 98, 201);
-}
-
-.signUp h3 {
-    font-weight: 400;
-    text-align: center;
 }
 
 .orContainer {

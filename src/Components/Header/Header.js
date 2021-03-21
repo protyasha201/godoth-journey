@@ -5,7 +5,7 @@ import './Header.css';
 const Header = () => {
     let history = useHistory();
     const handleLogin = () => {
-        history.push(`/login`);
+        history.push(`/signup`);
     }
     return (
         <div>
@@ -15,7 +15,7 @@ const Header = () => {
                     <Link className="navLinks" to="/">Home</Link>
                     <Link className="navLinks" to="/">Destination</Link>    
                     <Link className="navLinks" to="/">Contact</Link>
-                    <Link className="navLinks" to="/signup">Sign Up</Link>
+                    <Link className="navLinks" to="/">Blog</Link>
                     <button onClick={handleLogin} className="loginBtn">Login</button>
                 </div>
             </nav>

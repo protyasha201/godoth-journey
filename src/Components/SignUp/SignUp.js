@@ -1,25 +1,23 @@
-import React, { useImperativeHandle, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './SignUp.css';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import firebase from "firebase/app";
 import firebaseConfig from '../../firebaseConfig';
+import { UserContext } from '../../App';
+import { useHistory, useLocation } from 'react-router';
 
 if (firebase.apps.length === 0) {
     firebase.initializeApp(firebaseConfig);
 }
 
 const SignUp = () => {
-    const [user, setUser] = useState({
-        isSignedUp: false,
-        name: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-        error: '',
-        checkPassword: ''
-    })
+    const [newUser, setNewUser] = useState(false);
+    const [user, setUser] = useContext(UserContext);
+    let history = useHistory();
+    let location = useLocation();
+
+    let { from } = location.state || { from: { pathname: "/" } };
 
     const handleGoogleSignUp = () => {
         var googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -28,11 +26,12 @@ const SignUp = () => {
             .then((result) => {
                 const { displayName, email } = result.user;
                 const signedInUser = {
-                    isSignedUp: true,
+                    isSignedIn: true,
                     name: displayName,
                     email: email,
                 }
                 setUser(signedInUser);
+                history.replace(from);
             }).catch((error) => {
                 //show error
             });
@@ -46,7 +45,7 @@ const SignUp = () => {
             .then((result) => {
                 const { displayName, email } = result.user;
                 const signedInUser = {
-                    isSignedUp: true,
+                    isSignedIn: true,
                     name: displayName,
                     email: email,
                 }
@@ -73,7 +72,7 @@ const SignUp = () => {
             }
             else {
                 isFieldValid = false;
-                const userInfoUpdate = {...user};
+                const userInfoUpdate = { ...user };
                 userInfoUpdate.checkPassword = "Confirm Password is not correct";
                 setUser(userInfoUpdate);
             }
@@ -86,40 +85,88 @@ const SignUp = () => {
     }
 
     const handleSignUp = (e) => {
-        if (user.email && user.password) {
+        if (newUser && user.email && user.password) {
             firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
                 .then(res => {
                     const userInfoUpdate = { ...user };
+                    userInfoUpdate.success = 'Sign up successful now please login';
                     setUser(userInfoUpdate);
+                    updateUserName(user.name);
+                    history.replace(from);
                 })
                 .catch((error) => {
-                    const userInfoUpdate = {...user};
+                    const userInfoUpdate = { ...user };
                     userInfoUpdate.error = error.message;
                     setUser(userInfoUpdate);
                 });
         }
-        else{
-            alert("Form Not Valid");
+
+        if (!newUser && user.email && user.password) {
+            firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+                .then(res => {
+                    const userInfoUpdate = { ...user };
+                    userInfoUpdate.success = '';
+                    userInfoUpdate.isSignedIn = true;
+                    setUser(userInfoUpdate);
+                    updateUserName(user.name);
+                    history.replace(from);
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                });
         }
         e.preventDefault();
     }
 
+    const updateUserName = name => {
+        const user = firebase.auth().currentUser;
+
+        user.updateProfile({
+            displayName: name
+        })
+            .then(function () {
+                //update successful
+            })
+            .then(function (error) {
+                console.log(error);
+            })
+    }
+
+    const changeForm = () => {
+        setNewUser(!newUser);
+    }
+
     return (
         <div>
-            <div className="signUp">
-                <p>email: {user.email}</p>
-                <p>pass: {user.password}</p>
-                <p>{user.checkPassword}</p>
-                <p style={{color: 'red'}}>{user.error}</p>
-                <h1>Create an account</h1>
-                <form onReset={handleSignUp} onSubmit={handleSignUp} className="form">
-                    <input required onBlur={handleBlur} type="text" name="name" placeholder="Name"></input>
+            <p style={{ color: 'blue', textAlign: 'center' }}>{user.checkPassword}</p>
+            <p style={{ color: 'red', textAlign: 'center' }}>{user.error}</p>
+            <p style={{ color: 'green', textAlign: 'center' }}>{user.success}</p>
+            <div style={{
+                border: "3px solid rgb(157, 151, 151)",
+                maxWidth: "400px",
+                borderRadius: "5px",
+                margin: "50px auto",
+                padding: "20px"
+            }}>
+                <h1 style={{ color: 'coral' }}>{newUser ? "Create Account" : "Login"}</h1>
+                <form onSubmit={handleSignUp} className="form">
+                    {
+                        newUser && <input required onBlur={handleBlur} type="text" name="name" placeholder="Name"></input>
+                    }
                     <input required onBlur={handleBlur} type="email" name="email" placeholder="Email"></input>
                     <input required onBlur={handleBlur} type="password" name="password" placeholder="Password"></input>
-                    <input required onBlur={handleBlur} type="password" name="confirmPassword" placeholder="Confirm Password"></input>
-                    <button className="signupBtn">Create an account</button>
+                    {
+                        newUser && <input required onBlur={handleBlur} type="password" name="confirmPassword" placeholder="Confirm Password"></input>
+                    }
+                    <input type="submit" className="signupLogin" value={
+                        newUser ? "Create an account" : "Login"
+                    } />
                 </form>
-                <h3>Already have an account?<Link className="link" to="/login">Login</Link></h3>
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+                    <span>{newUser ? "Already have an account?" : "Don't have an account?"}</span>
+                    <span style={{ color: 'cornflowerblue', cursor: 'pointer' }} onClick={changeForm}>{newUser ? "Login" : "Create an account"}</span>
+                </div>
             </div>
             <div className="alternateSignup">
                 <div className="orContainer">
@@ -127,18 +174,18 @@ const SignUp = () => {
                     <h3>Or</h3>
                     <span className="lines"></span>
                 </div>
-                <div className="socialSignup">
-                    <div onClick={handleGoogleSignUp} className="signupSites">
+                <div className="socialSignup" onClick={handleFacebookSignUp}>
+                    <div className="signupSites">
                         <FontAwesomeIcon className="facebookIcon icons" icon={faFacebook} />
                         <h4>Continue with Facebook</h4>
                     </div>
-                    <div onClick={handleFacebookSignUp} className="signupSites">
+                    <div onClick={handleGoogleSignUp} className="signupSites">
                         <FontAwesomeIcon className="googleIcon icons" icon={faGoogle} />
                         <h4>Continue with Google</h4>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

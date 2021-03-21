@@ -3,18 +3,28 @@ import "firebase/auth";
 import Home from './Components/Home/Home';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import SignUp from './Components/SignUp/SignUp';
-import Login from './Components/Login/Login';
 import Header from './Components/Header/Header';
 import Error from './Components/Error/Error';
 import RideDetail from './Components/RideDetail/RideDetail';
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 
 export const UserContext = createContext();
 
 function App() {
+  const [user, setUser] = useState({
+    isSignedIn: false,
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    error: '',
+    checkPassword: '',
+    success: ''
+  })
 
   return (
-    // <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
+    <UserContext.Provider value={[user, setUser]}>
       <Router>
         <Header></Header>
         <Switch>
@@ -27,18 +37,15 @@ function App() {
           <Route path="/signup">
             <SignUp></SignUp>
           </Route>
-          <Route path="/login">
-            <Login></Login>
-          </Route>
-          <Route path="/rideDetail/:rideName">
+          <PrivateRoute path="/rideDetail/:rideName">
             <RideDetail></RideDetail>
-          </Route>
+          </PrivateRoute>
           <Route path="*">
             <Error></Error>
           </Route>
         </Switch>
       </Router>
-    // </UserContext.Provider>`
+    </UserContext.Provider>
   );
 }
 
