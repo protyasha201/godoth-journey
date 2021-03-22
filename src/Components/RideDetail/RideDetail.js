@@ -24,7 +24,7 @@ const RideDetail = () => {
         if (e.target.name === 'pickTo') {
             const newPickTo = { ...searchedForm };
             newPickTo.pickTo = e.target.value;
-            setSearchedForm(newPickTo)
+            setSearchedForm(newPickTo);
         }
     }
     return (

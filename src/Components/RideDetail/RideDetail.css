@@ -1,18 +1,19 @@
 .rideDetail {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     margin-top: 20px;
-    width: 50%;
+    width: 100%;
 }
 
 .searchCity{
-    border: blue 1px solid;
     background-color: rgb(41, 55, 60);
     padding: 20px;
     border-radius: 10px;
-    width: 50%;
+    width: 30%;
     position: relative;
     top: 30px;
+    height: 100%;
+    left: 180px;
 }
 
 .searchCity h4{

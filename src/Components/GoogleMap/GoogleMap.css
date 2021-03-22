@@ -1,0 +1,21 @@
+.map{
+    border-radius: 10px;
+    border: none;
+    width: 750px;
+    height: 550px;
+    position: absolute;
+    right: 100px;
+}
+.mapContainer{
+    width: 100%;
+}
+@media (max-width: 500px){
+    .map{
+        width: 480px;
+        position: absolute;
+        right: 0%;
+    }
+    .mapContainer{
+        margin: 50px 0;
+    }
+}
