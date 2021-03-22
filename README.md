@@ -1,4 +1,4 @@
-live-site:https://godoth-journey-5c449.web.app/
+live-site:https://godoth-journey-5c449.web.app
 
 Godoth Journey
 
