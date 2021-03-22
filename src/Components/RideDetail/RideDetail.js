@@ -1,6 +1,6 @@
 import React from 'react';
 import './RideDetail.css';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 import rideData from '../../rideData';
 import GoogleMap from '../GoogleMap/GoogleMap';
 import { useState } from 'react/cjs/react.development';

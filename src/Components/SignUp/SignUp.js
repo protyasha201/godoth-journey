@@ -5,7 +5,7 @@ import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import firebase from "firebase/app";
 import firebaseConfig from '../../firebaseConfig';
 import { UserContext } from '../../App';
-import { useHistory, useLocation } from 'react-router';
+import { useHistory, useLocation } from 'react-router-dom';
 
 if (firebase.apps.length === 0) {
     firebase.initializeApp(firebaseConfig);
