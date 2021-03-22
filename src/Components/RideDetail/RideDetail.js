@@ -27,6 +27,16 @@ const RideDetail = () => {
             setSearchedForm(newPickTo);
         }
     }
+
+    const handleSearch = () => {
+        const searchedInfoUpdate = {...searchedForm};
+
+        searchedInfoUpdate.isSearched = true;
+        searchedInfoUpdate.pickFrom = searchedForm.pickFrom;
+        searchedInfoUpdate.pickTo = searchedForm.pickTo
+
+        setSearchedForm(searchedInfoUpdate);
+    }
     return (
         <div className="rideDetail">
             {
@@ -69,11 +79,7 @@ const RideDetail = () => {
                                     <input onBlur={handleBlurPlace} type="text" name="pickFrom" placeholder="Pick From" />
                                     <h4>Pick To</h4>
                                     <input onBlur={handleBlurPlace} placeholder="Pick To" type="text" name="pickTo" />
-                                    <button onClick={() => setSearchedForm({
-                                        isSearched: true,
-                                        pickFrom: searchedForm.pickFrom,
-                                        pickTo: searchedForm.pickTo
-                                    })} className="searchBtn">Search</button>
+                                    <button onClick={handleSearch} className="searchBtn">Search</button>
                                 </div>
                         }
                     </div>)

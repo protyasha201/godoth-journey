@@ -20,7 +20,7 @@ const Header = () => {
                     <Link className="navLinks" to="/">Contact</Link>
                     <Link className="navLinks" to="/">Blog</Link>
                     {
-                        user.isSignedIn ? <h3 style={{cursor: 'pointer'}}className="navLinks" to="/signup">{user.name}</h3>
+                        user.isSignedIn ? <Link style={{cursor: 'pointer'}}className="navLinks" to="/signup">{user.name}</Link>
                         :
                         <button onClick={handleLogin} className="loginBtn">Login</button>
                     }

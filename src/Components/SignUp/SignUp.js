@@ -25,11 +25,12 @@ const SignUp = () => {
             .signInWithPopup(googleProvider)
             .then((result) => {
                 const { displayName, email } = result.user;
-                const signedInUser = {
-                    isSignedIn: true,
-                    name: displayName,
-                    email: email,
-                }
+                const signedInUser = { ...user };
+
+                signedInUser.isSignedIn = true;
+                signedInUser.name = displayName;
+                signedInUser.email = email;
+
                 setUser(signedInUser);
                 history.replace(from);
             }).catch((error) => {
@@ -44,12 +45,14 @@ const SignUp = () => {
             .signInWithPopup(fbProvider)
             .then((result) => {
                 const { displayName, email } = result.user;
-                const signedInUser = {
-                    isSignedIn: true,
-                    name: displayName,
-                    email: email,
-                }
+                const signedInUser = { ...user };
+
+                signedInUser.isSignedIn = true;
+                signedInUser.name = displayName;
+                signedInUser.email = email;
+
                 setUser(signedInUser);
+                history.replace(from);
             })
             .catch((error) => {
                 //show error
