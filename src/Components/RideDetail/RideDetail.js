@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './RideDetail.css';
 import { useParams } from 'react-router-dom';
 import rideData from '../../rideData';
 import GoogleMap from '../GoogleMap/GoogleMap';
-import { useState } from 'react/cjs/react.development';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
@@ -32,15 +31,13 @@ const RideDetail = () => {
         const searchedInfoUpdate = {...searchedForm};
 
         searchedInfoUpdate.isSearched = true;
-        searchedInfoUpdate.pickFrom = searchedForm.pickFrom;
-        searchedInfoUpdate.pickTo = searchedForm.pickTo
 
         setSearchedForm(searchedInfoUpdate);
     }
     return (
         <div className="rideDetail">
             {
-                rideData.map(rides => rides.name === rideName &&
+                rideData.map(rides => rides.name == rideName &&
                     <div className="searchCity" key={rides.name}>
                         {
                             searchedForm.isSearched ?
