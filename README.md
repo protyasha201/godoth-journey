@@ -1,6 +1,14 @@
-live-site:https://godoth-journey-5c449.web.app
+<h1>Godoth Journey</h1>
+Live:https://godoth-journey-5c449.web.app
 
-Godoth Journey
+<h3>About</h3>
+This Website is a ticket booking site made with react.
 
-This website contains some rides. You can make your own user account and login with google and facebook and find your trip.You can see a map also search for your destination.
-To login use must create a account first.So if you are new go to create a new account then create the account and then login.
+<h3>Features</h3>
+<ul>
+  <li>All components are dynamic</li>
+  <li>Added google map</li>
+  <li>Firebase authentication</li>
+  <li>Form validation</li>
+  <li>Responsive</li>
+</ul>
